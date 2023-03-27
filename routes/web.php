@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusinessCardsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [BusinessCardsController::class, 'show'])->name('business-cards.show');
+Route::get('/generate', [BusinessCardsController::class, 'create'])->name('business-cards.create');
+Route::post('/generate', [BusinessCardsController::class, 'store'])->name('business-cards.store');
+
