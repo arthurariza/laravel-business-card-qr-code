@@ -10,6 +10,8 @@ class BusinessCard extends Model
 {
     use HasFactory;
 
+    const PER_PAGE = 10;
+
     protected $fillable = ['name', 'linkedin_url', 'github_url'];
 
     protected static function booted(): void
