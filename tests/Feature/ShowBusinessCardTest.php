@@ -11,12 +11,13 @@ class ShowBusinessCardTest extends TestCase
     public function it_shows_a_business_card(): void
     {
         $businessCard = BusinessCard::factory()->create([
-            'name' => 'John Doe'
+            'name' => 'John Doe',
         ]);
 
         $response = $this->get(route('business-cards.show', $businessCard->slug));
 
-        $response->assertOk();
-        $response->assertViewHas('businessCard', $businessCard);
+        $response
+            ->assertOk()
+            ->assertViewHas('businessCard', $businessCard);
     }
 }

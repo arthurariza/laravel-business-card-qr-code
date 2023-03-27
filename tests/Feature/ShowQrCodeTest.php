@@ -11,12 +11,13 @@ class ShowQrCodeTest extends TestCase
     public function it_displays_a_page_with_the_qr_code(): void
     {
         $businessCard = BusinessCard::factory()->create([
-            'name' => 'John Doe'
+            'name' => 'John Doe',
         ]);
 
         $response = $this->get(route('qrcode.show', $businessCard->slug));
 
-        $response->assertOk()
+        $response
+            ->assertOk()
             ->assertViewHas('businessCard', $businessCard)
             ->assertSeeText($businessCard->name)
             ->assertSeeText('Scan Me')

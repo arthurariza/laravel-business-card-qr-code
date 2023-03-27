@@ -19,4 +19,3 @@ Route::get('business-cards/{business_card:slug}', [BusinessCardsController::clas
 Route::get('business-cards/{business_card:slug}/qrcode', [QrCodeController::class, 'show'])->name('qrcode.show');
 Route::get('/generate', [BusinessCardsController::class, 'create'])->name('business-cards.create');
 Route::post('/generate', [BusinessCardsController::class, 'store'])->name('business-cards.store');
-

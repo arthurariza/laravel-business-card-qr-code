@@ -15,7 +15,8 @@ class ListBusinessCardsTest extends TestCase
 
         $response = $this->get(route('api.business-cards.index'));
 
-        $response->assertSuccessful()
+        $response
+            ->assertSuccessful()
             ->assertJson(function (AssertableJson $json) {
                 $json->has('data')
                     ->has('data.0', function (AssertableJson $json) {
@@ -36,7 +37,8 @@ class ListBusinessCardsTest extends TestCase
 
         $response = $this->get(route('api.business-cards.index'));
 
-        $response->assertSuccessful()
+        $response
+            ->assertSuccessful()
             ->assertJson(function (AssertableJson $json) {
                 $json->has('data', BusinessCard::PER_PAGE)->etc();
             });
