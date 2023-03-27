@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BusinessCardsController extends Controller
 {
+    public function show(BusinessCard $businessCard)
+    {
+        return view('business_cards/show', ['businessCard' => $businessCard]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

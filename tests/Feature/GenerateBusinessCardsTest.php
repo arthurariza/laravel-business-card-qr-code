@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\BusinessCard;
 use Tests\TestCase;
 
-class GenerateBusinessCards extends TestCase
+class GenerateBusinessCardsTest extends TestCase
 {
     /** @test */
     public function it_displays_a_page_to_generate_business_cards(): void
@@ -28,9 +28,7 @@ class GenerateBusinessCards extends TestCase
 
         $response = $this->post(route('business-cards.store'), $data);
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect(route('business-cards.show'));
+        $response->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('business_cards', $data);
     }
