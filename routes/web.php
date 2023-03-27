@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [BusinessCardsController::class, 'create'])->name('homepage');
 Route::get('business-cards/{business_card:slug}', [BusinessCardsController::class, 'show'])->name('business-cards.show');
 Route::get('business-cards/{business_card:slug}/qrcode', [QrCodeController::class, 'show'])->name('qrcode.show');
 Route::get('/generate', [BusinessCardsController::class, 'create'])->name('business-cards.create');
