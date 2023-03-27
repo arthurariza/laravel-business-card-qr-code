@@ -20,9 +20,9 @@ class BusinessCardsController extends Controller
             'github_url' => ['required', 'url'],
         ]);
 
-        BusinessCard::create($validated);
+        $businessCard = BusinessCard::create($validated);
 
-        return redirect(route('business-cards.show'));
+        return redirect(route('qrcode.show', $businessCard));
     }
 
     public function create()

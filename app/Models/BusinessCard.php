@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BusinessCard extends Model
 {
@@ -20,5 +21,10 @@ class BusinessCard extends Model
             $businessCard->slug = Str::slug($businessCard->name);
             $businessCard->save();
         });
+    }
+
+    public function generateQrCode()
+    {
+        return QrCode::size(100)->generate(route('business-cards.show', $this->slug));
     }
 }

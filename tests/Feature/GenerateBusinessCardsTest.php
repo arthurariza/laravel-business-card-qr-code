@@ -18,7 +18,9 @@ class GenerateBusinessCardsTest extends TestCase
     /** @test */
     public function it_creates_a_business_card(): void
     {
-        $businessCard = BusinessCard::factory()->make();
+        $businessCard = BusinessCard::factory()->make([
+            'name' => 'test'
+        ]);
 
         $data = [
             'name' => $businessCard->name,
@@ -28,7 +30,8 @@ class GenerateBusinessCardsTest extends TestCase
 
         $response = $this->post(route('business-cards.store'), $data);
 
-        $response->assertSessionHasNoErrors();
+        $response->assertSessionHasNoErrors()
+            ->assertRedirect(route('qrcode.show', 'test'));
 
         $this->assertDatabaseHas('business_cards', $data);
     }
