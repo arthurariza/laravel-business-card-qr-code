@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: nginx.dockerfile
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - php
+    php:
+        build:
+            context: .
+            dockerfile: php.dockerfile
+        volumes:
+            - .:/var/www/html
+    composer:
+        build:
+            context: .
+            dockerfile: composer.dockerfile
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+    npm:
+        image: node:current-alpine
+        volumes:
+            - .:/var/www/html
+        entrypoint: [ "npm" ]
+        working_dir: /var/www/html
+    artisan:
+        build:
+            context: .
+            dockerfile: php.dockerfile
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+        entrypoint: [ "php", "/var/www/html/artisan" ]
